@@ -288,7 +288,9 @@ export default {
         this.meteoData.tAir = this.random(data.air_data.data.t_air, 1, 10)
         this.meteoData.hum = this.random(data.air_data.data.humidity, 1, 10)
         this.meteoData.wind = Math.abs(this.random(data.air_data.data.wind_speed, 5, 10))
-        this.meteoData.precip = Math.abs(this.random(data.air_data.data.precipitation_intensity, 3, 10))
+        this.meteoData.precip = data.air_data.data.precipitation_intensity > 0
+          ? Math.abs(this.random(data.air_data.data.precipitation_intensity, 3, 10))
+          : 0
         this.meteoData.precipType = this.meteoData.precip > 0 ? 'Дождь' : 'Без осадков'
         this.meteoData.press = data.air_data.data.pressure
         this.meteoData.t1 = this.random(data.soil_data.data.soil_temperature_1, 1, 10)
